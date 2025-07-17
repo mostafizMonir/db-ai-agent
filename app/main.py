@@ -2,10 +2,11 @@ import streamlit as st
 from db_utils import connect_to_db, run_query
 from chart_utils import df_to_chart
 from agent import natural_language_to_sql
+import sqlalchemy
 
 st.title("🧠 Agentic AI: Natural Language to SQL")
 
-conn_str = st.text_input("Enter your DB connection string:", type="password")
+conn_str = st.text_input("Enter your DB connection string:", type="default")
 question = st.text_area("Ask a question about your data:")
 chart_type = st.selectbox("Chart Type (optional):", ["None", "bar", "pie"])
 
