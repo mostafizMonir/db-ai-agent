@@ -15,12 +15,14 @@ if st.button("Run") and conn_str and question:
     if not conn:
         st.error(f"DB Connection failed: {engine}")
     else:
+        st.success("Successfully connected to database!")
         inspector = sqlalchemy.inspect(engine)
         tables = inspector.get_table_names()
         table_info = {}
         for table in tables:
-            columns = inspector.get_columns(table)
-            table_info[table] = [col['name'] for col in columns]
+            if table == 'dim_fiscal_year':
+                columns = inspector.get_columns(table)
+                table_info[table] = [col['name'] for col in columns]
 
         sql_query = natural_language_to_sql(question, table_info)
         st.code(sql_query, language='sql')
