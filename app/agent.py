@@ -1,6 +1,6 @@
 import os
 import openai
-from langchain.llms import OpenAI
+from langchain_openai  import OpenAI
 from langchain.agents import Tool, initialize_agent, AgentType
 
 llm = OpenAI(temperature=0)
